@@ -1,0 +1,24 @@
+[Unit]
+Description=NestIQ Educational Resource Server
+After=network.target
+
+[Service]
+Type=simple
+User=nestiq
+WorkingDirectory=/opt/nestiq
+ExecStart=/usr/bin/node nestiq_server.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=nestiq
+
+# Environment overrides — set these instead of editing the JS file
+Environment=PORT=3000
+Environment=ADMIN_EMAIL=tarunbaalalingam@gmail.com
+Environment=ADMIN_PASS=my victory
+Environment=JWT_SECRET=change_this_to_a_long_random_string
+# Environment=ANTHROPIC_API_KEY=sk-ant-...
+
+[Install]
+WantedBy=multi-user.target
